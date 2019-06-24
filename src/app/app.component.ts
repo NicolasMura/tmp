@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { fadeAnimation } from './animations/fadeIntRoute';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
 export class AppComponent {
-  title = 'hello-henri';
+  title: string = 'hello-henri';
+
 }
