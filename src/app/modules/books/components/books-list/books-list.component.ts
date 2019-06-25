@@ -14,7 +14,7 @@ export class BooksListComponent implements OnInit {
   books: Book[] = [];
 
   constructor(
-    private booksService: BooksService,
+    public booksService: BooksService,
     private router: Router
   ) {}
 

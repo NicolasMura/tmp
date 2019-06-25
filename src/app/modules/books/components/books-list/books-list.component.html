@@ -4,7 +4,7 @@
 <div *ngFor="let book of booksService.books" class="card-layout">
   <p>{{ book.title }} <a [routerLink]="['/book', book.isbn]">Détail</a></p>
 </div>
-<div *ngIf="booksService.books.length === 0" class="skeleton">
+<div *ngIf="booksService.books.length === 0" class="skeleton"> 
   <p></p>
   <p></p>
   <p></p>

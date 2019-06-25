@@ -13,8 +13,8 @@ import { fadeAnimation } from 'src/app/animations/fadeIntRoute';
 })
 export class BookDetailComponent implements OnInit, OnDestroy {
 
-  isbn: string;
-  private book: Book;
+  public isbn: string;
+  public book: Book;
   private sub: any;
   
   constructor(
