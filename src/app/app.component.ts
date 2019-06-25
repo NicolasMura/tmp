@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { fadeAnimation } from './animations/fadeIntRoute';
+import { fadeAnimation } from './shared/animations/fadeIntRoute';
+
 
 @Component({
   selector: 'app-root',

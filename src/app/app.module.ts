@@ -7,13 +7,14 @@ import { BooksListComponent } from './modules/books/components/books-list/books-
 import { BookDetailComponent } from './modules/books/components/book-detail/book-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BooksService } from './modules/books/services/books.service';
 import { environment } from './../environments/environment';
 
 // Imports for loading & configuring the in-memory web api
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataFakeBooksService }  from './modules/books/services//in-memory-data-fake-books.service';
+
 import { BooksModule } from './modules/books/books.module';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 @NgModule({
   declarations: [
@@ -30,10 +31,11 @@ import { BooksModule } from './modules/books/books.module';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    environment.production ? 
-      [] : HttpClientInMemoryWebApiModule.forRoot(InMemoryDataFakeBooksService, { dataEncapsulation: false, delay: 2000 })
+    // environment.production ? 
+    //   [] : HttpClientInMemoryWebApiModule.forRoot(InMemoryDataFakeBooksService, { dataEncapsulation: false, delay: 2000 }),
+    NgMasonryGridModule
   ],
-  providers: [HttpClient, BooksService],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
