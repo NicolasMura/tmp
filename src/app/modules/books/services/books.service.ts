@@ -16,9 +16,9 @@ export class BooksService {
   constructor(
     private http: HttpClient
   ) {
-    console.log('BooksService - constructor');
-    console.log('books : ', this.books.length);
-    this.getAllBooks().subscribe((books) => this.books = books);
+    // console.log('BooksService - constructor');
+    // console.log('books : ', this.books.length);
+    // this.getAllBooks().subscribe((books) => this.books = books);
   }
 
   /** GET books from the server */
@@ -31,8 +31,8 @@ export class BooksService {
 
   /** GET book by id. Will 404 if id not found */
   getBookByIsbn(isbn: string):Book {
-    console.log('books (BooksService) : ', this.books);
-    console.log('isbn (BooksService) : ', isbn);
+    // console.log('books (BooksService) : ', this.books);
+    // console.log('isbn (BooksService) : ', isbn);
     // if already fetch
     // if (this.books.length != 0) {
       // console.log("already fetch !");

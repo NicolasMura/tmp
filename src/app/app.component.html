@@ -1,9 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+
+<!-- <div style="">
   <h1>
-    Welcome to {{ title }}!
+    
   </h1>
-</div>
+</div> -->
 <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+  <div class="links">
+      <a href="https://github.com/todoXXX" target="_blank">View on Github</a>
+  </div>
+  <h1>Welcome to {{ title }}!</h1>
   <router-outlet #o="outlet"></router-outlet>
 </main>

@@ -21,11 +21,11 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public booksService: BooksService
   ) {
-    console.log('BookDetailComponent - constructor');
+    // console.log('BookDetailComponent - constructor');
   }
 
   ngOnInit() {    
-    console.log('BookDetailComponent - ngOnInit');
+    // console.log('BookDetailComponent - ngOnInit');
     
     this.isbn = this.route.snapshot.params['isbn'];
     console.log('isbn : ', this.isbn);
@@ -36,10 +36,6 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     //   this.isbn = params['isbn'];
     //   console.log('isbn : ', this.isbn);
     //   this.book = this.booksService.getBookByIsbn(this.isbn);
-    // });
-    
-    // this.route.paramMap.subscribe(params => {
-    //   this.isbn = params.get("isbn")
     // });
 
     // this.route.paramMap.pipe(

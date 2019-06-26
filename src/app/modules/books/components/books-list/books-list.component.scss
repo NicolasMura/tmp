@@ -1,3 +1,28 @@
+.masonry-wall {
+  text-align: center;
+  margin: 0 auto;
+  // background-color: red;
+
+  ngx-masonry {
+    margin: 0 auto;
+
+    .masonry-item {
+      margin-bottom: 20px;
+      background-color: #f1f1f1;
+      background-size: cover;
+      width: 300px;
+    
+      img {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        // border: 1px solid yellow;
+      }
+    }
+  }
+}
+
+// Skeleton (To Be Finished...)
 p:empty {
   animation: loading 1.7s infinite linear;
   background: #dedfe1;
@@ -19,6 +44,7 @@ h3:empty {
   height: 22px;
   width: 200px;
 }
+
 h5:empty{
   height: 30px;
   width: 200px;
@@ -29,6 +55,7 @@ a:empty{
   height: 40px;
   border: 0;
 }
+
 h4:empty {
   height: 18px;
   width: 200px;
@@ -38,10 +65,12 @@ p:empty {
   height: 18px;
   width: 200px;
 } 
+
 p:empty.lead {
   height: 30px;
   width: 200px;
 }
+
 @keyframes loading {
   0% {
     background-position: -100px;

@@ -1,15 +1,39 @@
-<p>
+<!-- <p>
   books-list works!
-</p>
-<div *ngFor="let book of booksService.books" class="card-layout">
+</p> -->
+<!-- <p (click)="appendItems()">push items</p> -->
+<div class="masonry-wall">
+  <ngx-masonry
+    [options]="masonryOptions"
+    [useImagesLoaded]="true"
+    (layoutComplete)="doStuff($event)"
+    (removeComplete)="doOtherStuff($event)">
+    <!-- <div ngxMasonryItem *ngFor="let book of booksService.books" class="masonry-item" routerLinkActive="active"  [routerLink]="['/books', book.isbn]">
+      <img [src]="book.cover" alt="No image" />
+      <p>{{ book.title }} <a [routerLink]="['/books', book.isbn]">Détail</a></p>
+    </div> -->
+    <div ngxMasonryItem *ngFor="let picture of masonryImages" class="masonry-item">
+      <img src="{{picture.picture}}">
+    </div>
+  </ngx-masonry>
+
+  <button *ngIf="limit < 100" (click)="showMoreImages()">Show More Images</button>
+  <h2 *ngIf="limit >= 100">No More Images</h2>
+</div>
+
+<!-- <div *ngFor="let book of booksService.books" class="card-layout">
   <p>{{ book.title }} <a [routerLink]="['/book', book.isbn]">Détail</a></p>
-</div>
+</div> -->
 <div *ngIf="booksService.books.length === 0" class="skeleton"> 
-  <p></p>
-  <p></p>
-  <p></p>
-  <p></p>
-  <p></p>
-  <p></p>
-  <p></p>
-</div>
+<!-- <div class="masonry-wall skeleton"> -->
+    <div class="masonry-item">
+      <div class="masonry-image card-img-top"></div>
+      <p></p>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>

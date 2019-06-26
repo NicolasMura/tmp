@@ -5,9 +5,9 @@ import { BooksListComponent } from './modules/books/components/books-list/books-
 import { BookDetailComponent } from './modules/books/components/book-detail/book-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/books', pathMatch: 'full' },
+  { path: '', redirectTo: 'books', pathMatch: 'full' },
   { path: 'books', component: BooksListComponent },
-  { path: 'book/:isbn', component: BookDetailComponent },
+  { path: 'books/:isbn', component: BookDetailComponent },
   // { path: '**', component: NotFoundComponent }
 ];
 

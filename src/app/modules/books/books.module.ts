@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'; 
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { BooksListComponent } from './components/books-list/books-list.component';
@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { BooksService } from './services/books.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataFakeBooksService } from './services/in-memory-data-fake-books.service';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 
 @NgModule({
@@ -17,10 +18,19 @@ import { InMemoryDataFakeBooksService } from './services/in-memory-data-fake-boo
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     environment.production ? 
-      [] : HttpClientInMemoryWebApiModule.forRoot(InMemoryDataFakeBooksService, { dataEncapsulation: false, delay: 2000 })
+      [] : HttpClientInMemoryWebApiModule.forRoot(
+        InMemoryDataFakeBooksService,
+        { dataEncapsulation: false, delay: 1000 }
+      ),
+    NgxMasonryModule
   ],
   exports: [],
-  declarations: [BooksListComponent, BookDetailComponent],
-  providers: [BooksService]
+  declarations: [
+    BooksListComponent,
+    BookDetailComponent
+  ],
+  providers: [
+    BooksService,
+  ],
 })
 export class BooksModule {}
