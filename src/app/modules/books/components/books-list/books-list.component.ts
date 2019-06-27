@@ -21,10 +21,10 @@ export class BooksListComponent implements OnInit {
 		fitWidth: true
   };
 
-  constructor(
-    public booksService: BooksService,
-    private router: Router
-  ) {}
+	constructor(
+		public booksService: BooksService,
+		private router: Router,
+		) {}
 
   ngOnInit() {
     this.masonryImages = this.dummyPictures.slice(0, this.limit);
@@ -36,14 +36,19 @@ export class BooksListComponent implements OnInit {
   }
 
   doStuff($event) {
-    console.log($event);
+    // console.log($event);
   }
 
   doOtherStuff($event) {
-    console.log($event);
+    // console.log($event);
   }
 
-  // TESTS
+	// TESTS
+	showMoreImages() {
+		this.limit += 15;
+		this.masonryImages = this.dummyPictures.slice(0, this.limit);
+	}
+	
   masonryImages;
 	limit = 15;
 	dummyPictures = [
@@ -348,10 +353,5 @@ export class BooksListComponent implements OnInit {
 			picture: 'https://source.unsplash.com/594x443/?Chad'
 		}
 	];
-
-	showMoreImages() {
-		this.limit += 15;
-		this.masonryImages = this.dummyPictures.slice(0, this.limit);
-	}
 
 }

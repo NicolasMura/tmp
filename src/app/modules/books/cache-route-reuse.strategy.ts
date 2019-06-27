@@ -13,10 +13,8 @@ export class CacheRouteReuseStrategy implements RouteReuseStrategy {
     console.log(this.getPath(before));
     console.log(this.getPath(curr));
     if (this.getPath(before) === 'books/:isbn' && this.getPath(curr) === 'books') {    
-      console.log('shouldReuseRoute -> TRUE');
       this.allowRetriveCache['books'] = true;
     } else {
-      console.log('shouldReuseRoute -> FALSE');
       this.allowRetriveCache['books'] = false;
     }
     return before.routeConfig === curr.routeConfig;

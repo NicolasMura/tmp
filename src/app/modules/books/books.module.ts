@@ -8,6 +8,9 @@ import { BooksService } from './services/books.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataFakeBooksService } from './services/in-memory-data-fake-books.service';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { MatCardModule, MatButtonModule, MatIconModule, MatBadgeModule } from '@angular/material';
+import { CartService } from './services/cart.service';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -22,15 +25,21 @@ import { NgxMasonryModule } from 'ngx-masonry';
         InMemoryDataFakeBooksService,
         { dataEncapsulation: false, delay: 1000 }
       ),
-    NgxMasonryModule
+    NgxMasonryModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule
   ],
   exports: [],
   declarations: [
     BooksListComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    CartComponent
   ],
   providers: [
     BooksService,
+    CartService
   ],
 })
 export class BooksModule {}

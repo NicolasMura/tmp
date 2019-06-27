@@ -10,6 +10,7 @@ import { BooksModule } from './modules/books/books.module';
 // import { RouteReuseStrategy } from '@angular/router';
 // import { CacheRouteReuseStrategy } from './modules/books/cache-route-reuse.strategy';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { BooksModule } from './modules/books/books.module';
   ],
   providers: [
     HttpClient,
-    // Si besoin de gérer une stratégie de gestion du cache
+    // Si besoin de gérer une stratégie de mise en cache
     // {
     //   provide: RouteReuseStrategy,
     //   useClass: CacheRouteReuseStrategy

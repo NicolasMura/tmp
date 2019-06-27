@@ -1,20 +1,38 @@
-<!-- <p>
-  books-list works!
-</p> -->
 <!-- <p (click)="appendItems()">push items</p> -->
+
 <div class="masonry-wall">
   <ngx-masonry
     [options]="masonryOptions"
     [useImagesLoaded]="true"
     (layoutComplete)="doStuff($event)"
     (removeComplete)="doOtherStuff($event)">
+    <div ngxMasonryItem *ngFor="let book of booksService.books" class="masonry-item">
+      <mat-card class="book-card">
+        <mat-card-header>
+          <mat-card-title>{{ book.title }}</mat-card-title>
+          <mat-card-subtitle>Best Of</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="book.cover" alt="No image" routerLinkActive="active"  [routerLink]="['/books', book.isbn]">
+        <mat-card-content>
+          <p>
+            {{book.synopsis[0]}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+            <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
     <!-- <div ngxMasonryItem *ngFor="let book of booksService.books" class="masonry-item" routerLinkActive="active"  [routerLink]="['/books', book.isbn]">
       <img [src]="book.cover" alt="No image" />
       <p>{{ book.title }} <a [routerLink]="['/books', book.isbn]">Détail</a></p>
+      <p><b>{{ book.price }} €</b></p>
     </div> -->
-    <div ngxMasonryItem *ngFor="let picture of masonryImages" class="masonry-item">
+    <!-- <div ngxMasonryItem *ngFor="let picture of masonryImages" class="masonry-item">
       <img src="{{picture.picture}}">
-    </div>
+    </div> -->
   </ngx-masonry>
 
   <button *ngIf="limit < 100" (click)="showMoreImages()">Show More Images</button>
