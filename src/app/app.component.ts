@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from './shared/animations/fadeIntRoute';
-import { BooksService } from './books/services/books.service';
+import { BooksService } from './services/books.service';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { BooksService } from './books/services/books.service';
   animations: [fadeAnimation]
 })
 export class AppComponent {
-  title: string = 'hello-henri';
+  title: string = 'Bienvenue dans la bibliothèque de H.P.';
 
   constructor(
     public booksService: BooksService

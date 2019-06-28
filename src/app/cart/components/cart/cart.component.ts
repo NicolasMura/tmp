@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/books/services/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -14,7 +14,9 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.cartService.getCommercialOffers().subscribe((offers) => console.log(offers));
+    this.cartService.getCommercialOffers().subscribe((offers) => {
+      console.log(offers);
+    });
     // this.cartService.getCommercialOffers().then((offers) => console.log(offers));
   }
 

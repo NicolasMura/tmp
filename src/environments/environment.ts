@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'api/books'
+  // apiUrl: 'api/books'
+  apiUrl: 'http://henri-potier.xebia.fr/books'
 };
 
 /*

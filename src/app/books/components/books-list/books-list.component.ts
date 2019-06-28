@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Book } from '../../../models/book.model';
 import { Router } from '@angular/router';
 import { NgxMasonryOptions } from 'ngx-masonry';
-import { BooksService } from '../../services/books.service';
+import { BooksService } from 'src/app/services/books.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 

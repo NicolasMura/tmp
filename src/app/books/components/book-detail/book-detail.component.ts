@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BooksService } from '../../services/books.service';
+import { BooksService } from 'src/app/services/books.service';
 import { Book } from '../../../models/book.model';
 import { fadeAnimation } from 'src/app/shared/animations/fadeIntRoute';
 
