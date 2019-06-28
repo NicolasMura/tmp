@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BooksService } from 'src/app/services/books.service';
 import { Book } from '../../../models/book.model';
 import { fadeAnimation } from 'src/app/shared/animations/fadeIntRoute';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
 
   public isbn: string;
   public book: Book;
-  private sub: any;
+  private sub: Subscription;
   
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +30,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     
     this.isbn = this.route.snapshot.params['isbn'];
     console.log('isbn : ', this.isbn);
-    this.book = this.booksService.getBookByIsbn(this.isbn);
+    // this.book = this.booksService.getBookByIsbn(this.isbn);
 
     // this.sub = this.route.params.subscribe(params => {
     //   console.log('params : ', params);
@@ -49,10 +50,17 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     //   console.log('Fetching book', this.route.snapshot.params.isbn);
     //   this.book = this.booksService.getBook(this.route.snapshot.params.isbn);
     // });
+
+    this.sub = this.booksService.eventStream$.subscribe((books: Book[]) => {
+      this.book = books.find(book => book.isbn == this.isbn);
+      console.log('Book : ', this.book)
+    })
   }
 
   ngOnDestroy() {
-    // this.sub.unsubscribe();
+    if (!this.sub.closed) {
+      this.sub.unsubscribe();
+    }
   }
 
 }
