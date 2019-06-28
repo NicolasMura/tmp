@@ -1,14 +1,18 @@
-
 <!-- <div style="">
   <h1>
     
   </h1>
 </div> -->
 <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-  <div class="links">
-      <a href="https://github.com/todoXXX" target="_blank">View on Github</a>
-  </div>
-  <h1>Welcome to {{ title }}!</h1>
+  <nav>
+    <div class="links">
+        <a href="https://github.com/todoXXX" target="_blank">View on Github</a>
+    </div>
+    <h1>Welcome to {{ title }}!</h1>
+    <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+      <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after" (click)="openDialog(book)">shopping_cart</mat-icon>
+    </button>
+  </nav>
   <p><a routerLink="/cart">Go to panier</a></p>
   <router-outlet #o="outlet"></router-outlet>
 </main>

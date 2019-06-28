@@ -22,13 +22,25 @@ export class CartService {
   /** GET commercial offers from the server */
   getCommercialOffers(): Observable<any> { 
   // getCommercialOffers(books: Book[]): Observable<Book[]> { 
-    let url = API_URL + 'c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers';
+    let url = encodeURI(API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers');
     console.log(url);
     return this.http.get<any>(url)
     .pipe(
       map(res => res.json())
     );
   }
+  // getCommercialOffers() { 
+  //   let url = API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers';
+  //   return this.http.get(url)
+  //     .toPromise()  
+  //     // .then(
+  //     //   res => { // Success
+  //     //     console.log(res.json());
+  //     //   }
+  //     // )
+  //     .then(response => response)
+  //     .catch(this.handleError);;
+  // }
   
   getCartItems() {
     return this.cart.items;

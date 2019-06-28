@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { BooksModule } from './modules/books/books.module';
+import { MatIconModule, MatButtonModule } from '@angular/material';
 // import { RouteReuseStrategy } from '@angular/router';
 // import { CacheRouteReuseStrategy } from './modules/books/cache-route-reuse.strategy';
 
@@ -21,6 +22,8 @@ import { BooksModule } from './modules/books/books.module';
     AppRoutingModule,
     HttpClientModule,
     BooksModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     HttpClient,

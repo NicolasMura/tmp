@@ -1,12 +1,16 @@
 <!-- <p (click)="appendItems()">push items</p> -->
 
+<mat-form-field>
+  <input matInput placeholder="Recherchez un livre" [(ngModel)]="searchText">
+</mat-form-field>
+
 <div class="masonry-wall">
   <ngx-masonry
     [options]="masonryOptions"
     [useImagesLoaded]="true"
     (layoutComplete)="doStuff($event)"
     (removeComplete)="doOtherStuff($event)">
-    <div ngxMasonryItem *ngFor="let book of booksService.books" class="masonry-item">
+    <div ngxMasonryItem *ngFor="let book of booksService.books | filter : searchText" class="masonry-item">
       <mat-card class="book-card">
         <mat-card-header>
           <mat-card-title>{{ book.title }}</mat-card-title>
@@ -20,7 +24,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
-            <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
+            <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after" (click)="openDialog(book)">shopping_cart</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>

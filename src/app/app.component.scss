@@ -7,21 +7,25 @@ router-outlet ~ * {
 main {
   text-align:center;
 
-  .links {
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  nav {
+    // position: fixed;
+
+    .links {
+      width: 50%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      a {
+        flex-basis: 80%;
+        color: #009FB7;
+        font-weight: bold;
+        text-decoration: none;
     
-    a {
-      flex-basis: 80%;
-      color: #009FB7;
-      font-weight: bold;
-      text-decoration: none;
-  
-      &:hover {
-          color: #FE4A49;
+        &:hover {
+            color: #FE4A49;
+        }
       }
     }
   }

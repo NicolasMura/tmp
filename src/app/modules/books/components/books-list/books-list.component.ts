@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Book } from '../../models/book.model';
 import { Router } from '@angular/router';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { BooksService } from '../../services/books.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -11,8 +12,8 @@ import { BooksService } from '../../services/books.service';
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent implements OnInit {
-  books: Book[] = [];
-
+	books: Book[] = [];
+	
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '0.2s',
 		gutter: 20,
@@ -24,7 +25,20 @@ export class BooksListComponent implements OnInit {
 	constructor(
 		public booksService: BooksService,
 		private router: Router,
-		) {}
+		public dialog: MatDialog
+	) {}
+
+	openDialog(book: Book): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '500px',
+      data: book
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+			console.log(result);
+    });
+  }
 
   ngOnInit() {
     this.masonryImages = this.dummyPictures.slice(0, this.limit);
@@ -353,5 +367,28 @@ export class BooksListComponent implements OnInit {
 			picture: 'https://source.unsplash.com/594x443/?Chad'
 		}
 	];
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+		@Inject(MAT_DIALOG_DATA) public data,
+		private router: Router
+	) {}
+
+	IWantToSpendMoreMoney(): void {
+    this.dialogRef.close();
+	}
+	
+	showCart(): void {
+		this.dialogRef.close();
+		this.router.navigate(['cart']);
+	}
 
 }

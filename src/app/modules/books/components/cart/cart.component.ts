@@ -13,7 +13,8 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cartService.getCommercialOffers().subscribe((offers) => console.log(offers));
+    // this.cartService.getCommercialOffers().subscribe((offers) => console.log(offers));
+    // this.cartService.getCommercialOffers().then((offers) => console.log(offers));
   }
 
 }
