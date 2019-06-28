@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Book } from 'src/app/models/book.model';
 const API_URL = environment.apiUrl;
 
 @Injectable({

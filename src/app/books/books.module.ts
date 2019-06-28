@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { BooksListComponent, DialogOverviewExampleDialog } from './components/books-list/books-list.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { RouterModule } from '@angular/router';
@@ -10,7 +10,7 @@ import { InMemoryDataFakeBooksService } from './services/in-memory-data-fake-boo
 import { NgxMasonryModule } from 'ngx-masonry';
 import { MatCardModule, MatButtonModule, MatIconModule, MatBadgeModule, MatFormFieldModule, MatInputModule, MatDialog, MatDialogModule } from '@angular/material';
 import { CartService } from './services/cart.service';
-import { CartComponent } from './components/cart/cart.component';
+import { CartComponent } from '../cart/components/cart/cart.component';
 import { FormsModule }   from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
 

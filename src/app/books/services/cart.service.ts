@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Cart } from '../models/cart.model';
-import { Book } from '../models/book.model';
+import { Cart } from 'src/app/models/cart.model';
+import { Book } from 'src/app/models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
-import { Offer } from '../models/offer.model';
+import { Offer } from 'src/app/models/offer.model';
 const API_URL = environment.apiUrl;
 
 

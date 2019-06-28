@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Book } from '../../models/book.model';
+import { Book } from '../../../models/book.model';
 import { Router } from '@angular/router';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { BooksService } from '../../services/books.service';

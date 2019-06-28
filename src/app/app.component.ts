@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from './shared/animations/fadeIntRoute';
-import { BooksService } from './modules/books/services/books.service';
+import { BooksService } from './books/services/books.service';
 
 
 @Component({
