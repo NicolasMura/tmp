@@ -3,6 +3,7 @@ import { Book } from '../../../models/book.model';
 import { Router } from '@angular/router';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { BooksService } from 'src/app/services/books.service';
+import { CartService } from 'src/app/services/cart.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -25,20 +26,9 @@ export class BooksListComponent implements OnInit {
 	constructor(
 		public booksService: BooksService,
 		private router: Router,
-		public dialog: MatDialog
+		public dialog: MatDialog,
+		private cartService: CartService
 	) {}
-
-	openDialog(book: Book): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '500px',
-      data: book
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
-			console.log(result);
-    });
-  }
 
   ngOnInit() {
     this.masonryImages = this.dummyPictures.slice(0, this.limit);
@@ -55,6 +45,35 @@ export class BooksListComponent implements OnInit {
 
   doOtherStuff($event) {
     // console.log($event);
+  }
+
+  isBookAddedToCart(book: Book): boolean {
+		return this.cartService.cart.items.find(item => book.isbn === item.isbn) ? false : true;
+	}
+	
+	openDialog(book: Book): void {
+	// Ajout du livre dans le panier
+	console.log('Livre à ajouter : ', book);
+	this.cartService.addItemToCart(book);
+	console.log('Panier : ', this.cartService.cart);
+	// Affichage Popup panier
+	const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '500px',
+      data: book
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+			console.log(result);
+    });
+  }
+
+  removeBookFromCart(book: Book): void {
+    console.log('Livre à retirer : ', book);
+    const index: number = this.cartService.cart.items.indexOf(book);
+    if (index !== -1) {
+      this.cartService.cart.items.splice(index, 1);
+    }   
   }
 
 	// TESTS

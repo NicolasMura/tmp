@@ -17,7 +17,7 @@
   </div>
   <div style="align-self: flex-end">
     <a mat-button mat-icon-button color="primary" routerLink="/cart">
-      <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
+      <mat-icon matBadge="{{cartService.cart.items.length}}" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
     </a>
     <a mat-button routerLink="/books">
       <button mat-icon-button color="primary" routerLink="/cart">

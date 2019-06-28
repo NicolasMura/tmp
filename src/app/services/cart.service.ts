@@ -4,8 +4,8 @@ import { Book } from 'src/app/models/book.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment.prod';
 import { Offer } from 'src/app/models/offer.model';
+import { environment } from 'src/environments/environment';
 const API_URL = environment.apiUrl;
 
 
@@ -14,7 +14,10 @@ const API_URL = environment.apiUrl;
 })
 export class CartService {
 
-  cart: Cart;
+  public cart: Cart = {
+    items: [],
+    totalPrice: 0
+  };
   constructor(
     private http: HttpClient
   ) {}
@@ -36,29 +39,27 @@ export class CartService {
       catchError(this.handleError<any>('getAllBooks', []))
     );
   }
-  // getCommercialOffers() { 
-  //   let url = API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers';
-  //   return this.http.get(url)
-  //     .toPromise()  
-  //     // .then(
-  //     //   res => { // Success
-  //     //     console.log(res.json());
-  //     //   }
-  //     // )
-  //     .then(response => response)
-  //     .catch(this.handleError);;
-  // }
   
-  getCartItems() {
+  getAllCartItems(): Book[] {
     return this.cart.items;
   }
   
-  addToCard(book) {
+  addItemToCart(book: Book): void {
     this.cart.items.push(book);
+    this.computeTotalPrice();
+
   }
 
-  removeFromCard(book) {
+  removeItemFromCart(book: Book): void {
     // todo...
+  }
+
+  computeTotalPrice() {
+    this.cart.totalPrice = 0;
+    this.cart.items.forEach(item => {
+      this.cart.totalPrice += item.price;
+    });
+    console.log('Prix panier : ', this.cart.totalPrice);
   }
 
   /**

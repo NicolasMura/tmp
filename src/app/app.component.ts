@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from './shared/animations/fadeIntRoute';
 import { BooksService } from './services/books.service';
+import { CartService } from './services/cart.service';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class AppComponent {
   title: string = 'Bienvenue dans la bibliothèque de H.P.';
 
   constructor(
-    public booksService: BooksService
+    public booksService: BooksService,
+    public cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,6 @@ export class AppComponent {
       this.booksService.books = books;
       console.log('books : ', this.booksService.books);
     });
-  } 
+  }
   
 }

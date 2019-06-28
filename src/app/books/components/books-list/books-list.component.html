@@ -23,9 +23,17 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
-            <mat-icon matBadgeColor="accent" matBadgePosition="above after" (click)="openDialog(book)">shopping_cart</mat-icon>
-          </button>
+          <div *ngIf="isBookAddedToCart(book); then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+              <mat-icon matBadgeColor="accent" matBadgePosition="above after" (click)="openDialog(book)">shopping_cart</mat-icon>
+            </button>
+          </ng-template>
+          <ng-template #elseBlock>
+            <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+              <mat-icon matBadgeColor="accent" matBadgePosition="above after" (click)="removeBookFromCart(book)">delete</mat-icon>
+            </button>
+          </ng-template>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { Book } from 'src/app/models/book.model';
+import { environment } from 'src/environments/environment';
 const API_URL = environment.apiUrl;
 
 @Injectable({
@@ -32,8 +32,8 @@ export class BooksService {
     return this.http.get<Book[]>(API_URL)
     .pipe(
       tap((books: Book[]) => {
-        console.log('tap');
-        console.log(books);
+        // console.log('tap');
+        // console.log(books);
         this.updateBooksList(books);
       }),
       catchError(this.handleError<Book[]>('getAllBooks', []))

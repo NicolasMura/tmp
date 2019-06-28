@@ -21,11 +21,11 @@ import { FilterPipe } from './pipes/filter.pipe';
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     // + remove fake API endpoint in environment.ts
-    // environment.production ? 
-    //   [] : HttpClientInMemoryWebApiModule.forRoot(
-    //     InMemoryDataFakeBooksService,
-    //     { dataEncapsulation: false, delay: 1000 }
-    //   ),
+    environment.production ? 
+      [] : HttpClientInMemoryWebApiModule.forRoot(
+        InMemoryDataFakeBooksService,
+        { dataEncapsulation: false, delay: 1000 }
+      ),
     NgxMasonryModule,
     FormsModule,
     MatCardModule,
