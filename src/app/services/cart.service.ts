@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cart } from 'src/app/models/cart.model';
 import { Book } from 'src/app/models/book.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Offer } from 'src/app/models/offer.model';
 import { environment } from 'src/environments/environment';
@@ -18,9 +18,16 @@ export class CartService {
     items: [],
     totalPrice: 0
   };
+  private state = new BehaviorSubject([]);
+  public eventStream$ = this.state.asObservable();
+
   constructor(
     private http: HttpClient
   ) {}
+
+  updateOffersList(newOffer: any): void {
+    this.state.next(newOffer);
+  }
 
   /** GET commercial offers from the server */
   // getCommercialOffers(): Observable<any> { 
@@ -32,11 +39,32 @@ export class CartService {
   //     map(res => res.json())
   //   );
   // }
-  getCommercialOffers(): Observable<any> {
-    let url = encodeURI(API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers');
+  getCommercialOffers(books: Book[]): Observable<any> { 
+  // getCommercialOffers(): Observable<any> {
+    // let url = encodeURI(API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers');
+    let url = API_URL + '/';
+    books.forEach((book, index) => {
+      url += book.isbn;
+      if (index !== books.length - 1) {
+        url += ',';
+      }
+    });
+    url += '/commercialOffers';
+    console.log('URL : ', url);
     return this.http.get<any>(url)
+    // .pipe(
+    //   catchError(this.handleError<any>('getAllBooks', []))
+    // );
     .pipe(
-      catchError(this.handleError<any>('getAllBooks', []))
+      tap((offers: Offer[]) => {
+        // console.log('tap');
+        // console.log(offers);
+        this.updateOffersList(offers);
+
+        // on calcule la meilleure offre
+        // this.computeBestOffer();
+      }),
+      catchError(this.handleError<Offer[]>('getCommercialOffers', []))
     );
   }
   

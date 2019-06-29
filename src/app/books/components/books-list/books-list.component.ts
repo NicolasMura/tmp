@@ -391,7 +391,8 @@ export class BooksListComponent implements OnInit {
 
 @Component({
   selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
+	templateUrl: 'dialog-overview-example-dialog.html',
+	styles: ['h1, p { text-align: center; } .mat-dialog-actions { justify-content: space-around; } ']
 })
 export class DialogOverviewExampleDialog {
 

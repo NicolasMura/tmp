@@ -11,6 +11,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { MatCardModule, MatButtonModule, MatIconModule, MatBadgeModule, MatFormFieldModule, MatInputModule, MatDialog, MatDialogModule } from '@angular/material';
 import { FormsModule }   from '@angular/forms';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TruncatetextPipe } from './pipes/truncatetext.pipe';
 
 
 @NgModule({
@@ -21,11 +22,11 @@ import { FilterPipe } from './pipes/filter.pipe';
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     // + remove fake API endpoint in environment.ts
-    environment.production ? 
-      [] : HttpClientInMemoryWebApiModule.forRoot(
-        InMemoryDataFakeBooksService,
-        { dataEncapsulation: false, delay: 1000 }
-      ),
+    // environment.production ? 
+    //   [] : HttpClientInMemoryWebApiModule.forRoot(
+    //     InMemoryDataFakeBooksService,
+    //     { dataEncapsulation: false, delay: 1000 }
+    //   ),
     NgxMasonryModule,
     FormsModule,
     MatCardModule,
@@ -41,7 +42,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     BooksListComponent,
     BookDetailComponent,
     FilterPipe,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    TruncatetextPipe
   ],
   entryComponents: [DialogOverviewExampleDialog],
   providers: [

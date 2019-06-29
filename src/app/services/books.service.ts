@@ -17,11 +17,7 @@ export class BooksService {
 
   constructor(
     private http: HttpClient
-  ) {
-    // console.log('BooksService - constructor');
-    // console.log('books : ', this.books.length);
-    // this.getAllBooks().subscribe((books) => this.books = books);
-  }
+  ) {}
 
   updateBooksList(newBookList: Book[]): void {
     this.state.next(newBookList);

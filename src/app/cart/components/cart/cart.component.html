@@ -1,1 +1,26 @@
-<p>cart works!</p>
+<div *ngIf="cartService.getAllCartItems().length === 0; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <p>Votre panier est (désespérément) vide : <a routerLink="/books">remplissez-le</a> !</p>
+</ng-template>
+<ng-template #elseBlock>
+  <mat-list>
+    <div *ngFor="let item of cartService.getAllCartItems()" class="items">
+      <mat-list-item>{{item.title}} : {{item.price}} €</mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="total">
+        <mat-list-item>TOTAL (non remisé) : {{cartService.cart.totalPrice}} €</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    <div class="offer">
+        <mat-list-item>Meilleure réduction : TODO...</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    <div class="total">
+      <mat-list-item>TOTAL (avec remise) : TODO...</mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+</ng-template>
+
+

@@ -1,3 +1,23 @@
-<h2>{{ book?.title }}</h2>
-<img [src]="book?.cover" alt="No image" />
 <p><a routerLink="/books">Retour à la liste des livres</a></p>
+
+<mat-card class="book-card">
+  <mat-card-header>
+    <mat-card-title>{{ book?.title }}</mat-card-title>
+    <mat-card-subtitle>Meilleure vente</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="book?.cover" alt="No image" routerLinkActive="active"  [routerLink]="['/books', book?.isbn]">
+  <mat-card-content>
+    <p *ngIf="book?.synopsis[0]" class="synopsis">
+      {{book?.synopsis[0]}}
+    </p>
+    <p *ngIf="book?.synopsis[1]" class="synopsis">
+      {{book?.synopsis[1]}}
+    </p>
+    <p *ngIf="book?.synopsis[2]" class="synopsis">
+      {{book?.synopsis[2]}}
+    </p>
+    <p class="price">
+      {{book?.price}} €
+    </p>
+  </mat-card-content>
+</mat-card>

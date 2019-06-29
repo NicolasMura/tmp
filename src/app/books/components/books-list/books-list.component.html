@@ -1,6 +1,6 @@
 <!-- <p (click)="appendItems()">push items</p> -->
 
-<mat-form-field>
+<mat-form-field class="search">
   <input matInput placeholder="Recherchez un livre" [(ngModel)]="searchText">
 </mat-form-field>
 
@@ -14,13 +14,16 @@
       <mat-card class="book-card">
         <mat-card-header>
           <mat-card-title>{{ book.title }}</mat-card-title>
-          <mat-card-subtitle>Best Of</mat-card-subtitle>
+          <mat-card-subtitle>Meilleure vente</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image [src]="book.cover" alt="No image" routerLinkActive="active"  [routerLink]="['/books', book.isbn]">
         <mat-card-content>
-          <p>
-            {{book.synopsis[0]}}
+          <p class="synopsis">
+            {{book.synopsis[0] | truncatetext:200 }}
           </p>
+          <p class="price">
+              {{book.price}} €
+            </p>
         </mat-card-content>
         <mat-card-actions>
           <div *ngIf="isBookAddedToCart(book); then thenBlock else elseBlock"></div>
