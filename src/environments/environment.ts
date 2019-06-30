@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'api/books',
+  // apiUrl: 'api/books', // fake API pour tests
   apiUrl: 'http://henri-potier.xebia.fr/books'
 };
 

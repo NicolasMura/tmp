@@ -5,12 +5,13 @@ import { BooksListComponent } from './books/components/books-list/books-list.com
 import { BookDetailComponent } from './books/components/book-detail/book-detail.component';
 import { CartComponent } from './cart/components/cart/cart.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'books', pathMatch: 'full' },
   { path: 'books', component: BooksListComponent },
   { path: 'books/:isbn', component: BookDetailComponent },
   { path: 'cart', component: CartComponent },
-  // { path: '**', component: NotFoundComponent }
+  // { path: '**', component: NotFoundComponent } // @TODO : à implémenter
 ];
 
 @NgModule({

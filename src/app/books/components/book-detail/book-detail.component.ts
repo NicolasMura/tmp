@@ -21,17 +21,16 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     public booksService: BooksService
-  ) {
-    // console.log('BookDetailComponent - constructor');
-  }
+  ) {}
 
   ngOnInit() {    
     this.isbn = this.route.snapshot.params['isbn'];
     console.log('isbn : ', this.isbn);
 
+    // Souscription à l'observable eventStream$ (liste des livres) pour pouvoir récupérer un livre
+    // dans le cas où on arrive directement sur la page détail
     this.sub = this.booksService.eventStream$.subscribe((books: Book[]) => {
       this.book = books.find(book => book.isbn == this.isbn);
-      console.log('Book : ', this.book)
     })
   }
 

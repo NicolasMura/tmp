@@ -1,4 +1,6 @@
+<!-- TESTS -->
 <!-- <p (click)="appendItems()">push items</p> -->
+<!-- END TESTS -->
 
 <mat-form-field class="search">
   <input matInput placeholder="Recherchez un livre" [(ngModel)]="searchText">
@@ -16,7 +18,7 @@
           <mat-card-title>{{ book.title }}</mat-card-title>
           <mat-card-subtitle>Meilleure vente</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="book.cover" alt="No image" routerLinkActive="active"  [routerLink]="['/books', book.isbn]">
+        <img mat-card-image [src]="book.cover" alt="No image" routerLinkActive="active" [routerLink]="['/books', book.isbn]">
         <mat-card-content>
           <p class="synopsis">
             {{book.synopsis[0] | truncatetext:200 }} <a [routerLink]="['/books', book.isbn]">(lire la suite)</a>
@@ -40,6 +42,7 @@
         </mat-card-actions>
       </mat-card>
     </div>
+    <!-- TESTS -->
     <!-- <div ngxMasonryItem *ngFor="let book of booksService.books" class="masonry-item" routerLinkActive="active"  [routerLink]="['/books', book.isbn]">
       <img [src]="book.cover" alt="No image" />
       <p>{{ book.title }} <a [routerLink]="['/books', book.isbn]">Détail</a></p>
@@ -48,22 +51,25 @@
     <!-- <div ngxMasonryItem *ngFor="let picture of masonryImages" class="masonry-item">
       <img src="{{picture.picture}}">
     </div> -->
+    <!-- ENDTESTS -->
   </ngx-masonry>
 
+  <!-- TESTS -->
   <!-- <button *ngIf="limit < 100" (click)="showMoreImages()">Show More Images</button> -->
   <!-- <h2 *ngIf="limit >= 100">No More Images</h2> -->
+  <!-- END TESTS -->
 </div>
 
-<div *ngIf="booksService.books.length === 0" class="skeleton">
-<!-- <div class="masonry-wall skeleton"> -->
-    <div class="masonry-item">
-      <div class="masonry-ima@e card-img-top"></div>
-      <p></p>
-    </div>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+<!-- Début de squelette de l'appli - A améliorer -->
+<!-- <div *ngIf="booksService.books.length === 0" class="skeleton">
+  <div class="masonry-item">
+    <div class="masonry-ima@e card-img-top"></div>
     <p></p>
   </div>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+</div> -->

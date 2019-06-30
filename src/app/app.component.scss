@@ -4,30 +4,25 @@ router-outlet ~ * {
   width: 100%;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  background-color: lightgrey;
+  width: 100%;
+  z-index: 10000;
+  padding: 10px;
+    
+  h1 {
+    margin: 0px;
+  }
+
+  .icons {
+    align-self: flex-end;
+  }
+}
+
 main {
   text-align:center;
   padding-top: 60px;
-
-  nav {
-    // position: fixed;
-
-    .links {
-      width: 50%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      a {
-        flex-basis: 80%;
-        color: #009FB7;
-        font-weight: bold;
-        text-decoration: none;
-    
-        &:hover {
-            color: #FE4A49;
-        }
-      }
-    }
-  }
 }

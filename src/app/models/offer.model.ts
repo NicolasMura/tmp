@@ -4,5 +4,5 @@ export class Offer {
   value:	      number;
   sliceValue?:  number;
   offerAmount:  number; // montant de la remise appliquée sur le panier en cours
-  newCartPrice: number; // prix du panier en cours avec cette remise
+  newCartPrice: number; // prix du panier en cours une fois la remise offerAmount appliquée
 }

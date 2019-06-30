@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Offer } from 'src/app/models/offer.model';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class CartComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   constructor(
-    public cartService: CartService
+    public cartService: CartService,
+    private _snackBar: MatSnackBar
   ) { 
-    // Pour les tests en localhost :
+    // Fake data pour les tests :
     // this.cartService.offers = [
     //   {
     //     "type": "percentage",
@@ -49,13 +51,19 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartService.offers = offers.offers;
       }, (err) => {
         console.log(err);
+        this.showError('Une erreur est survenue lors de la récupération des offres...');
       });
     }
 
+    // Souscription à l'observable eventStream$ (liste des offres commerciales) pour pouvoir récupérer une offre
+    // dans le cas où on arrive directement sur le panier (@TODO : à coupler avec une gestion des données en localstorage)
     this.sub = this.cartService.eventStream$.subscribe((offers: any) => {
-      console.log('Offers : ' , offers.offers);
       this.cartService.offers = offers;
     });
+  }
+
+  showError(errorMessage) {
+    this._snackBar.open(errorMessage);
   }
 
   ngOnDestroy() {

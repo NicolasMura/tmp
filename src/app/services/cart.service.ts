@@ -48,10 +48,7 @@ export class CartService {
     return this.http.get<any>(url)
       .pipe(
         tap((offers: any) => {
-          // console.log('tap');
-          // console.log(offers);
           this.updateOffersList(offers.offers);
-
           // on calcule la meilleure offre
           this.bestOffer = this.computeBestOffer(offers.offers);
         }),
@@ -66,11 +63,13 @@ export class CartService {
   addItemToCart(book: Book): void {
     this.cart.items.push(book);
     this.computeTotalPrice();
-
   }
 
   removeItemFromCart(book: Book): void {
-    // logique a rapatrier ici...
+    const index: number = this.cart.items.indexOf(book);
+    if (index !== -1) {
+      this.cart.items.splice(index, 1);
+    }
   }
 
   computeTotalPrice() {
@@ -78,11 +77,9 @@ export class CartService {
     this.cart.items.forEach(item => {
       this.cart.totalPrice += item.price;
     });
-    console.log('Prix panier : ', this.cart.totalPrice);
   }
 
   computeBestOffer(offers: Offer[]): Offer {
-    console.log('***********');
     let computedPrices: number[] = [];
     let computedPrice;
     offers.forEach(offer => {
@@ -93,8 +90,8 @@ export class CartService {
           offer.humanType = offer.value.toString() + '%';
           offer.offerAmount = this.cart.totalPrice - computedPricePercentage;
           offer.newCartPrice = computedPricePercentage;
-          console.log('Nouveau prix (pourcentage de ' + offer.value + '%) : ');
-          console.log(computedPricePercentage);
+          // console.log('Nouveau prix (pourcentage de ' + offer.value + '%) : ');
+          // console.log(computedPricePercentage);
           break;
 
         case 'minus':
@@ -103,8 +100,8 @@ export class CartService {
           offer.humanType = 'réduction';
           offer.offerAmount = this.cart.totalPrice - computedPriceMinus;
           offer.newCartPrice = computedPriceMinus;
-          console.log('Nouveau prix (réduction de ' + offer.value + '€) : ');
-          console.log(computedPriceMinus);
+          // console.log('Nouveau prix (réduction de ' + offer.value + '€) : ');
+          // console.log(computedPriceMinus);
           break;
 
         case 'slice':
@@ -116,8 +113,8 @@ export class CartService {
           offer.humanType = quotient.toString() + ' tranche(s) de ' + sliceValue.toString() + '€';
           offer.offerAmount = this.cart.totalPrice - computedPriceSlice;
           offer.newCartPrice = computedPriceSlice;
-          console.log('Nouveau prix (réduction de ' + quotient * offer.value + '€) : ');
-          console.log(computedPriceSlice);
+          // console.log('Nouveau prix (réduction de ' + quotient * offer.value + '€) : ');
+          // console.log(computedPriceSlice);
           break;
       
         default:
@@ -127,8 +124,7 @@ export class CartService {
 
     let bestPrice: number = Math.min(...computedPrices);
     let bestOffer = offers.find(offer => offer.newCartPrice === bestPrice);
-    console.log('Meilleure offre = ', bestOffer);
-    console.log('***********');
+    // console.log('Meilleure offre = ', bestOffer);
 
     return bestOffer;
   }

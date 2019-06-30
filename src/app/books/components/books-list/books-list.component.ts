@@ -35,11 +35,6 @@ export class BooksListComponent implements OnInit {
     this.masonryImages = this.dummyPictures.slice(0, this.limit);
   }
 
-  goToBookDetails(id) {
-    // console.log('Go to id ' + id);
-    this.router.navigate(['/book', id]);
-  }
-
   doStuff($event) {
     // console.log($event);
   }
@@ -54,27 +49,16 @@ export class BooksListComponent implements OnInit {
 	
 	openDialog(book: Book): void {
 		// Ajout du livre dans le panier
-		console.log('Livre à ajouter : ', book);
 		this.cartService.addItemToCart(book);
-		console.log('Panier : ', this.cartService.cart);
-		// Affichage Popup panier
+		// Affichage Pop-up panier
 		const dialogRef = this.dialog.open(DialogItemCart, {
 			width: '500px',
 			data: book
 		});
-
-    dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed');
-			console.log(result);
-    });
   }
 
   removeBookFromCart(book: Book): void {
-    console.log('Livre à retirer : ', book);
-    const index: number = this.cartService.cart.items.indexOf(book);
-    if (index !== -1) {
-      this.cartService.cart.items.splice(index, 1);
-    }   
+		this.cartService.removeItemFromCart(book);   
   }
 
 	// TESTS

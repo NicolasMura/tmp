@@ -6,6 +6,7 @@ import { Book } from 'src/app/models/book.model';
 import { environment } from 'src/environments/environment';
 const API_URL = environment.apiUrl;
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,43 +29,12 @@ export class BooksService {
     return this.http.get<Book[]>(API_URL)
     .pipe(
       tap((books: Book[]) => {
-        // console.log('tap');
-        // console.log(books);
         this.updateBooksList(books);
       }),
       catchError(this.handleError<Book[]>('getAllBooks', []))
     );
   }
 
-  // /** GET book by id. Will 404 if id not found */
-  // getBookByIsbn(isbn: string):Book {
-  //   // console.log('books (BooksService) : ', this.books);
-  //   // console.log('isbn (BooksService) : ', isbn);
-  //   // if already fetch
-  //   // if (this.books.length != 0) {
-  //     // console.log("already fetch !");
-  //     return this.books.find(book => book.isbn == isbn);
-  //   // } else {
-  //     // console.log("NOT already fetch !");
-  //     // return this.getBook(isbn);
-  //   // }
-  // }
-
-  /** GET book by id. Will 404 if id not found */
-  // getBook(isbn: string):Observable<Book> {
-  //   // const url = `${API_URL}/${isbn}`;
-  //   // return this.http.get<Book>(url).pipe(
-  //   //   catchError(this.handleError<Book>(`getBook isbn=${isbn}`))
-  //   // );
-  //   // return this.http.get<Book>(`${API_URL}/${isbn}`).pipe(
-  //   //   catchError(this.handleError<Book>(`getBook isbn=${isbn}`))
-  //   // );
-
-  //   return this.http.get<Book>(`${API_URL}/${isbn}`).pipe(
-  //     catchError(this.handleError<Book>(`getBook isbn=${isbn}`))
-  //   );
-  // }
-  
   /**
    * Handle Http operation that failed.
    * Let the app continue.

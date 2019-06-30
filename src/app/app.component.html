@@ -1,41 +1,20 @@
-<!-- <div style="">
-  <h1>
-    
-  </h1>
-</div> -->
-<nav style="display: flex; justify-content: space-between; position: fixed; background-color: lightgrey; width: 100%; z-index: 10000; padding: 10px;">
-  <!-- <div class="links">
-      <a href="https://github.com/todoXXX" target="_blank">View on Github</a>
-  </div> -->
-  <!-- <h1>Welcome to {{ title }}!</h1> -->
-  <div style="">
+<nav>
+  <div>
     <a aria-label="Accueil" mat-button routerLink="/" tabindex="0" aria-disabled="false" href="/">Accueil</a>
     <a mat-button routerLink="/books">Livres</a>
   </div>
   <div>
-    <h1 style="margin: 0">{{ title }}</h1>
+    <h1>{{ title }}</h1>
   </div>
-  <div style="align-self: flex-end">
+  <div class="icons">
     <a mat-button mat-icon-button color="primary" routerLink="/cart">
       <mat-icon matBadge="{{cartService.cart.items.length}}" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
     </a>
-    <a mat-button mat-icon-button color="primary" routerLink="/cart" style="margin-right: 30px;">
-      <!-- <img src="../assets/img/icons/github-circle-white-transparent.svg" alt=""> -->
-      <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+    <a mat-button mat-icon-button color="primary" routerLink="https://github.com/NicolasMura/tmp" style="margin-right: 30px;">
+      <mat-icon svgIcon="github" aria-hidden="false" aria-label="Github logo SVG icon"></mat-icon>
     </a>
-    <!-- <a mat-button routerLink="/books">
-      <button mat-icon-button color="primary" routerLink="/cart">
-        <mat-icon><img src="../assets/img/icons/github-circle-white-transparent.svg" alt=""></mat-icon>
-      </button>
-    </a> -->
   </div>
-  <!-- <button mat-icon-button color="primary" routerLink="/cart" style="float: right; margin-right: 10px;">
-    <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
-  </button> -->
-  
 </nav>
 <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-  <!-- <p><a routerLink="/cart">Go to panier</a></p> -->
-  <!-- <button mat-button style="position: fixed; margin-bottom: 50px; background-color: red;">Menu</button> -->
   <router-outlet #o="outlet"></router-outlet>
 </main>
