@@ -14,6 +14,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class BooksListComponent implements OnInit {
 	books: Book[] = [];
+	searchText: string = "";
 	
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '0.2s',
