@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
-import { BooksListComponent, DialogOverviewExampleDialog } from './components/books-list/books-list.component';
+import { BooksListComponent, DialogItemCart } from './components/books-list/books-list.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { RouterModule } from '@angular/router';
 import { BooksService } from '../services/books.service';
@@ -42,10 +42,10 @@ import { TruncatetextPipe } from './pipes/truncatetext.pipe';
     BooksListComponent,
     BookDetailComponent,
     FilterPipe,
-    DialogOverviewExampleDialog,
+    DialogItemCart,
     TruncatetextPipe
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [DialogItemCart],
   providers: [
     BooksService
   ],

@@ -26,30 +26,8 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {    
-    // console.log('BookDetailComponent - ngOnInit');
-    
     this.isbn = this.route.snapshot.params['isbn'];
     console.log('isbn : ', this.isbn);
-    // this.book = this.booksService.getBookByIsbn(this.isbn);
-
-    // this.sub = this.route.params.subscribe(params => {
-    //   console.log('params : ', params);
-    //   this.isbn = params['isbn'];
-    //   console.log('isbn : ', this.isbn);
-    //   this.book = this.booksService.getBookByIsbn(this.isbn);
-    // });
-
-    // this.route.paramMap.pipe(
-    //   switchMap((params) => {
-    //     this.isbn = params.get("isbn")
-    //   })
-    // );
-
-    // this.sub = this.route.params.subscribe(params => {
-    //   console.log('Fetching book', params);
-    //   console.log('Fetching book', this.route.snapshot.params.isbn);
-    //   this.book = this.booksService.getBook(this.route.snapshot.params.isbn);
-    // });
 
     this.sub = this.booksService.eventStream$.subscribe((books: Book[]) => {
       this.book = books.find(book => book.isbn == this.isbn);

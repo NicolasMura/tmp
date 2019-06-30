@@ -18,6 +18,9 @@ export class CartService {
     items: [],
     totalPrice: 0
   };
+  public offers: Offer[] = [];
+  public bestOffer: Offer;
+  public bestPrice: number = 0;
   private state = new BehaviorSubject([]);
   public eventStream$ = this.state.asObservable();
 
@@ -30,17 +33,7 @@ export class CartService {
   }
 
   /** GET commercial offers from the server */
-  // getCommercialOffers(): Observable<any> { 
-  // // getCommercialOffers(books: Book[]): Observable<Book[]> { 
-  //   let url = encodeURI(API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers');
-  //   console.log(url);
-  //   return this.http.get<any>(url)
-  //   .pipe(
-  //     map(res => res.json())
-  //   );
-  // }
   getCommercialOffers(books: Book[]): Observable<any> { 
-  // getCommercialOffers(): Observable<any> {
     // let url = encodeURI(API_URL + '/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers');
     let url = API_URL + '/';
     books.forEach((book, index) => {
@@ -51,21 +44,19 @@ export class CartService {
     });
     url += '/commercialOffers';
     console.log('URL : ', url);
-    return this.http.get<any>(url)
-    // .pipe(
-    //   catchError(this.handleError<any>('getAllBooks', []))
-    // );
-    .pipe(
-      tap((offers: Offer[]) => {
-        // console.log('tap');
-        // console.log(offers);
-        this.updateOffersList(offers);
 
-        // on calcule la meilleure offre
-        // this.computeBestOffer();
-      }),
-      catchError(this.handleError<Offer[]>('getCommercialOffers', []))
-    );
+    return this.http.get<any>(url)
+      .pipe(
+        tap((offers: any) => {
+          // console.log('tap');
+          // console.log(offers);
+          this.updateOffersList(offers.offers);
+
+          // on calcule la meilleure offre
+          this.bestOffer = this.computeBestOffer(offers.offers);
+        }),
+        catchError(this.handleError<Offer[]>('getCommercialOffers', []))
+      );
   }
   
   getAllCartItems(): Book[] {
@@ -79,7 +70,7 @@ export class CartService {
   }
 
   removeItemFromCart(book: Book): void {
-    // todo...
+    // logique a rapatrier ici...
   }
 
   computeTotalPrice() {
@@ -88,6 +79,58 @@ export class CartService {
       this.cart.totalPrice += item.price;
     });
     console.log('Prix panier : ', this.cart.totalPrice);
+  }
+
+  computeBestOffer(offers: Offer[]): Offer {
+    console.log('***********');
+    let computedPrices: number[] = [];
+    let computedPrice;
+    offers.forEach(offer => {
+      switch (offer.type) {
+        case 'percentage':
+          let computedPricePercentage = this.cart.totalPrice * (1 - offer.value/100);
+          computedPrices.push(computedPricePercentage);
+          offer.humanType = offer.value.toString() + '%';
+          offer.offerAmount = this.cart.totalPrice - computedPricePercentage;
+          offer.newCartPrice = computedPricePercentage;
+          console.log('Nouveau prix (pourcentage de ' + offer.value + '%) : ');
+          console.log(computedPricePercentage);
+          break;
+
+        case 'minus':
+          let computedPriceMinus = this.cart.totalPrice - offer.value;
+          computedPrices.push(computedPriceMinus);
+          offer.humanType = 'réduction';
+          offer.offerAmount = this.cart.totalPrice - computedPriceMinus;
+          offer.newCartPrice = computedPriceMinus;
+          console.log('Nouveau prix (réduction de ' + offer.value + '€) : ');
+          console.log(computedPriceMinus);
+          break;
+
+        case 'slice':
+          // let sliceValue = offer.sliceValue;
+          let sliceValue = 60;
+          let quotient = Math.floor(this.cart.totalPrice / sliceValue);
+          let computedPriceSlice = this.cart.totalPrice - quotient * offer.value;
+          computedPrices.push(computedPriceSlice);
+          offer.humanType = quotient.toString() + ' tranche(s) de ' + sliceValue.toString() + '€';
+          offer.offerAmount = this.cart.totalPrice - computedPriceSlice;
+          offer.newCartPrice = computedPriceSlice;
+          console.log('Nouveau prix (réduction de ' + quotient * offer.value + '€) : ');
+          console.log(computedPriceSlice);
+          break;
+      
+        default:
+          break;
+      }
+    });
+
+    let bestPrice: number = Math.min(...computedPrices);
+    let bestOffer = offers.find(offer => offer.newCartPrice === bestPrice);
+    console.log('Meilleure offre = ', bestOffer);
+    console.log('***********');
+
+    return bestOffer;
   }
 
   /**

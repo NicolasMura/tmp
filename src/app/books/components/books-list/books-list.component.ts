@@ -52,15 +52,15 @@ export class BooksListComponent implements OnInit {
 	}
 	
 	openDialog(book: Book): void {
-	// Ajout du livre dans le panier
-	console.log('Livre à ajouter : ', book);
-	this.cartService.addItemToCart(book);
-	console.log('Panier : ', this.cartService.cart);
-	// Affichage Popup panier
-	const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '500px',
-      data: book
-    });
+		// Ajout du livre dans le panier
+		console.log('Livre à ajouter : ', book);
+		this.cartService.addItemToCart(book);
+		console.log('Panier : ', this.cartService.cart);
+		// Affichage Popup panier
+		const dialogRef = this.dialog.open(DialogItemCart, {
+			width: '500px',
+			data: book
+		});
 
     dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed');
@@ -390,14 +390,14 @@ export class BooksListComponent implements OnInit {
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
-	templateUrl: 'dialog-overview-example-dialog.html',
+  selector: 'dialog-item-cart',
+	templateUrl: 'dialog-item-cart.html',
 	styles: ['h1, p { text-align: center; } .mat-dialog-actions { justify-content: space-around; } ']
 })
-export class DialogOverviewExampleDialog {
+export class DialogItemCart {
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<DialogItemCart>,
 		@Inject(MAT_DIALOG_DATA) public data,
 		private router: Router
 	) {}

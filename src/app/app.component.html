@@ -19,11 +19,15 @@
     <a mat-button mat-icon-button color="primary" routerLink="/cart">
       <mat-icon matBadge="{{cartService.cart.items.length}}" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>
     </a>
-    <a mat-button routerLink="/books">
-      <button mat-icon-button color="primary" routerLink="/cart">
-        <mat-icon>github</mat-icon>
-      </button>Github
+    <a mat-button mat-icon-button color="primary" routerLink="/cart" style="margin-right: 30px;">
+      <!-- <img src="../assets/img/icons/github-circle-white-transparent.svg" alt=""> -->
+      <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
     </a>
+    <!-- <a mat-button routerLink="/books">
+      <button mat-icon-button color="primary" routerLink="/cart">
+        <mat-icon><img src="../assets/img/icons/github-circle-white-transparent.svg" alt=""></mat-icon>
+      </button>
+    </a> -->
   </div>
   <!-- <button mat-icon-button color="primary" routerLink="/cart" style="float: right; margin-right: 10px;">
     <mat-icon matBadge="22" matBadgeColor="accent" matBadgePosition="above after">shopping_cart</mat-icon>

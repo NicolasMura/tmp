@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { BooksModule } from './books/books.module';
-import { MatIconModule, MatButtonModule, MatBadgeModule, MatMenuModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatBadgeModule, MatSnackBarModule } from '@angular/material';
 import { CartModule } from './cart/cart.module';
 // import { RouteReuseStrategy } from '@angular/router';
 // import { CacheRouteReuseStrategy } from './modules/books/cache-route-reuse.strategy';
@@ -27,7 +27,7 @@ import { CartModule } from './cart/cart.module';
     MatButtonModule,
     MatIconModule,
     MatBadgeModule,
-    MatMenuModule
+    MatSnackBarModule
   ],
   providers: [
     HttpClient,

@@ -4,21 +4,32 @@
 </ng-template>
 <ng-template #elseBlock>
   <mat-list>
+    <h3 mat-subheader>Votre panier</h3>
     <div *ngFor="let item of cartService.getAllCartItems()" class="items">
-      <mat-list-item>{{item.title}} : {{item.price}} €</mat-list-item>
-      <mat-divider></mat-divider>
+      <mat-list-item>
+        <p mat-line>{{item.title}} : {{item.price | number:'1.2-2'}} €</p>
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
     </div>
+    <mat-divider></mat-divider>
     <div class="total">
-        <mat-list-item>TOTAL (non remisé) : {{cartService.cart.totalPrice}} €</mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
+      <mat-list-item>
+        <p mat-line>TOTAL (non remisé) : {{cartService.cart?.totalPrice | number:'1.2-2'}} €</p>
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
+    </div>
     <div class="offer">
-        <mat-list-item>Meilleure réduction : TODO...</mat-list-item>
-        <mat-divider></mat-divider>
-      </div>
+      <mat-list-item>
+        <p mat-line>Meilleure remise ({{cartService.bestOffer?.humanType}}) : {{cartService.bestOffer?.offerAmount | number:'1.2-2'}} €</p>
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
+    </div>
+    <mat-divider></mat-divider>
     <div class="total">
-      <mat-list-item>TOTAL (avec remise) : TODO...</mat-list-item>
-      <mat-divider></mat-divider>
+      <mat-list-item>
+        <p mat-line>TOTAL (avec meilleure remise) : {{cartService.bestOffer?.newCartPrice | number:'1.2-2'}} €</p>
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
     </div>
   </mat-list>
 </ng-template>

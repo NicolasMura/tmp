@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CartComponent } from './components/cart/cart.component';
 import { CartService } from '../services/cart.service';
 import { RouterModule } from '@angular/router';
-import { MatListModule, MatDividerModule } from '@angular/material';
+import { MatListModule, MatDividerModule, MatIconModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { MatListModule, MatDividerModule } from '@angular/material';
     CommonModule,
     RouterModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatIconModule
   ],
   providers: [
     CartService

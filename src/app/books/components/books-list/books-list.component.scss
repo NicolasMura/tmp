@@ -20,6 +20,15 @@ mat-form-field.search {
 
         .synopsis {
           text-align: justify;
+
+          &:first-child::first-letter  {
+            font-size: 60px;
+            padding-right: 10px;
+            margin-top: -20px;
+            float:left;
+            font-family: 'Fondamento', cursive;
+            font-weight: 700;
+          }
         }
 
         .price {

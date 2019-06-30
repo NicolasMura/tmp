@@ -18,21 +18,22 @@ export class CartComponent implements OnInit, OnDestroy {
     public cartService: CartService
   ) { 
     // Pour les tests en localhost :
-    this.offers = [
-      {
-        "type": "percentage",
-        "value": 4
-      },
-      {
-        "type": "minus",
-        "value": 15
-      },
-      {
-        "type": "slice",
-        "sliceValue": 100,
-        "value": 12
-      }
-    ];
+    // this.cartService.offers = [
+    //   {
+    //     "type": "percentage",
+    //     "value": 4
+    //   },
+    //   {
+    //     "type": "minus",
+    //     "value": 15
+    //   },
+    //   {
+    //     "type": "slice",
+    //     "sliceValue": 100,
+    //     "value": 12
+    //   }
+    // ];
+    // console.log('Offers : ' , this.cartService.offers);
   }
 
   ngOnInit() {
@@ -45,7 +46,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
       this.cartService.getCommercialOffers(itemsInCart).subscribe((offers) => {
         console.log(offers.offers);
-        this.offers = offers.offers;
+        this.cartService.offers = offers.offers;
       }, (err) => {
         console.log(err);
       });
@@ -53,9 +54,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
     this.sub = this.cartService.eventStream$.subscribe((offers: any) => {
       console.log('Offers : ' , offers.offers);
-      this.offers = offers;
+      this.cartService.offers = offers;
     });
-    
   }
 
   ngOnDestroy() {
